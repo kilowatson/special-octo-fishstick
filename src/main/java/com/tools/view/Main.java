@@ -28,7 +28,7 @@ public class Main extends JFrame {
 
 		switch (option) {
 			case BASE_64:
-				panel = new Base64();
+				panel = new Base64(this);
 				
 				break;
 			// case "CSV to JSON":

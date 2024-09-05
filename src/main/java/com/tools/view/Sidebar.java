@@ -15,7 +15,6 @@ public class Sidebar extends JPanel {
 
 	public Sidebar(Main main) {
 		this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-		this.setBackground(Color.pink);
 
 		for (ToolsEnum tool : ToolsEnum.values()) {
 
