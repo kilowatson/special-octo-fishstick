@@ -1,6 +1,7 @@
 package com.tools.view;
 
 import java.awt.BorderLayout;
+import java.awt.CardLayout;
 import java.awt.Component;
 
 import javax.swing.BoxLayout;
@@ -11,12 +12,20 @@ import com.tools.models.ToolsEnum;
 
 public class Main extends JFrame {
 
+	private JPanel mainPanel;
+    private CardLayout cardLayout;
+
 	public Main() {
 		this.setTitle("Tools");
 		this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		cardLayout = new CardLayout();
+		mainPanel = new JPanel(cardLayout);
+
 		Sidebar sidebar = new Sidebar(this);
 		this.add(sidebar, BorderLayout.WEST);
+		this.add(mainPanel,BorderLayout.CENTER);
 		this.setVisible(true);
 
 	}
@@ -31,19 +40,23 @@ public class Main extends JFrame {
 				panel = new Base64(this);
 				
 				break;
-			// case "CSV to JSON":
-			// break;
+			case CSV_TO_JSON:
+				panel = new CSVtoJSON(this);
+
+				break;
 			default:
 				panel = new JPanel();
 				break;
 		}
 
+		// Add the panel to the mainPanel and show it
+		mainPanel.add(panel, option.toString());
+		cardLayout.show(mainPanel, option.toString());
 
-
-		panel.setName("Main Panel");
-		this.add(panel, BorderLayout.CENTER);
-		this.revalidate();
-		this.repaint();
+		// panel.setName("Main Panel");
+		// this.add(panel, BorderLayout.CENTER);
+		// this.revalidate();
+		// this.repaint();
 
 	}
 
